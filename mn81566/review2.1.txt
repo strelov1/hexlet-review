@@ -1,0 +1,191 @@
+Михаил приветствую - хорошая работа!
+Настало время сделать ее еще лучше
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/package.json#L5
+
+Здесь было бы хорошо добавить описание проекта из которого можно было бы сразу понять о чем проект
+
+_________________
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/package.json#L17
+
+А также автора
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/__fixtures__/file1.json
+
+Тесты плоских структур полностью покрываются тестами на вложенные структуры, лучше будет удалить лишние тесты
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/__tests__/genDiffData.test.js#L14-L23
+
+Старайся не оставлять старый код без особой надобности, для этого отлично справляется гит.
+
+Это относится ко всем комментариям в коде, комментарии должны пояснять работу кода
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/README.md
+
+Неплохо бы добавить инструкцию установки, которую необходимо сделать перед запуском
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/tree/99d95170381ba22582570fec6ea74b9f838b2836/formatters
+
+Так как эта директория является частью исходного кода, то находиться она должна в соответствующей директории - `src`
+
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/index.js
+
+Не хватает импорта функции gendiff, как об этом объявлено в package.json
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/bin/gendiff.js#L6
+
+Необходимо поработать над именами функции - (функция, это почти всегда глагол).
+
+Советую освежить в памяти эту статью https://ru.hexlet.io/blog/posts/naming-errors-1 и пройтись по всему проекту
+
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/index.js#L16
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/plain.js#L34
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/stylish.js#L59
+
+Здесь и в других местах с возвратом ошибки советую использовать следующий подход упрощающий отладку.
+
+Выводить не походящие значение в ошибке
+
+```
+throw new Error(`Не найден форматтер: ${formatterName}`);
+```
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/json.js#L4
+
+Тут не совсем понятно, для чего json строка обрамляется скобками еще раз, это может усложнить использование вывода другими програмами
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/src/parsers.js#L9-L26
+
+Данный код берет слишком много ответственности  - исходя из названия он должен заниматься только парсингом, а
+в нашем случае он еще загружаешь файл, определяет его расширение.
+
+Пример хорошо построенной фабрики, которая делает только то что должна, можно посмотреть в соседнем файле
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/index.js
+
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/src/diff.js#L13-L52
+
+Функция построение дерева, хороший кандидат для вынесения ее в отдельный файл
+
+_________________
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/src/diff.js#L32-L51
+
+Непонятно почему используется reduce а не map
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/src/diff.js#L48
+
+Тут происходит сортировкой массива, в каждой итерации цикла
+логичнее отсортировать цикл, до работы с ним - сразу после getUnionKeys
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/src/diff.js#L27
+
+Если использовать сортировку массива ключей, о чем я писал выше, то и не придется при сортировке искать 
+ключ по которому сортировать.
+
+Также нативная функция [].sort() - мутирует массив - следует избегать лишних мутаций - это усложняет код.
+
+Функция sortBy lodash сортирует без мутации
+https://lodash.com/docs/4.17.15#sortBy
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/plain.js#L8-L16
+
+Данная функция объявляется при каждом рекурсивном вызове следует вынести ее на уровень модуля,
+(https://ru.hexlet.io/blog/posts/skripty-moduli-i-biblioteki) каноническое имя для подобных функции - stringify
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/plain.js#L18
+
+Непонятно почему используется reduce а не map
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/plain.js#L25-L26
+
+Так как не измененные поля отрисовывать в plain не нужно, можно отфильтровать такие значения выше
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/plain.js#L40-L42
+
+Непонятно что значит res, и что за преобразование на выходе?
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/stylish.js#L11-L27
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/stylish.js#L34-L40
+
+Нужно избегать мутаций, это усложняет код при его чтении и отладки
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/stylish.js#L5-L40
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/stylish.js#L5-L40
+
+Функции и константы определяются внутри функции iter, которая вызывается рекурсивно, это значит что они будут определяться каждый раз.
+
+Такие функции нужно определять на уровне модуля
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/99d95170381ba22582570fec6ea74b9f838b2836/formatters/stylish.js#L44
+
+Непонятно почему используется reduce а не map
+
+_________________
+
+Ну и главное - нужно добиться успешного прохождения тестов. Удачи :)

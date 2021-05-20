@@ -1,0 +1,92 @@
+Отличная работа, еще пару штрихов до идеала
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/package.json#L29
+
+Здесь прокралась лишняя зависимость, которая не используется в проекте
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/__tests__/genDiffData.test.js
+
+Тесты можно упростить, с помощью конструкции test.each
+
+Подготовив таблицу в кейсами как в примерах
+
+https://jestjs.io/docs/en/api#testeachtablename-fn-timeout
+
+```
+test.each([
+  [1, 1, 2],
+  [1, 2, 3],
+  [2, 1, 3],
+])('.add(%i, %i)', (a, b, expected) => {
+  expect(a + b).toBe(expected);
+});
+```
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/parsers.js#L11
+
+В парсере появилась специфика, завязанная на . в файловой системы, лучше вынести эту специфику на уровень вверх - и там уберать эту точку это позволит использовать эту функцию в другом контексте ничего не зная о файловой системе
+_________________
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/parsers.js#L12
+
+Можно упростить без вызова дополнительной функции
+
+```
+case 'json':
+  return JSON.parse(content);
+```
+_________________
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/parsers.js#L17
+
+Формат yml, yaml а не ayml, также в случае case не обязательно делать два отдельных возврата
+
+```
+case 'yml':
+case 'yaml':
+  return yamlParse(content);
+```
+_________________
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/formatters/index.js
+
+Фабрика для форматера сделана просто прекрасно, можно применить аналогичный подход и для парсера
+
+_________________
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/formatters/plain.js#L20
+
+Еще один момент для улучшения, это собирать names не строками, а наращивать в массив при каждом рекурсивном вызове а при использовании просто собирать массив в строку join('.')
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/formatters/plain.js#L27
+
+Cкобочки вокруг ('added') - лишние
+
+_________________
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/formatters/plain.js#L23
+
+Здесь излишне конструкция интерполяции строк `${}`
+
+_________________
+
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/formatters/stylish.js#L31-L33
+
+Эту конструкцию можно также вписать в case ниже
+
+_________________
+
+https://github.com/mn81566/frontend-project-lvl2/blob/b0d950e6e0d11e5033429c63c962db9e8af3ba79/src/formatters/plain.js#L22-L24
+
+Мы знаем что наличие children есть только при status == nested, поэтому можно также вписать это в case ниже,
+Также status не самое удачное наименования ноды, это скорее описание ее типа: type, kind и т.д
