@@ -1,4 +1,6 @@
-Добрый день. Кристина! Отличная работа!
+Добрый день. Кристина! Работа Супер!
+
+С первой попытки и так близко к идеалу!
 
 Сейчас наступает не менее важная часть разработки - рефакторинг кода. Далее я отправлю список замечаний.
 Ваша задача внимательно изучить их и внести исправления в свой код
@@ -12,6 +14,8 @@ https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a
 ---
 
 Также в README можно включить инструкцию установки в текстовом формате, чтобы была возможность установить скопировав команды
+
+---
 
 https://github.com/isimyi/frontend-project-lvl1/commit/17177fb99a3c47d5016cdc24ab28556f8de14718
 
@@ -40,3 +44,56 @@ https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a
 https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/bin/brain-calc.js
 
 Данная часть проекта должна отвечать только за его запуск игры, сконфигурировать игру можно в файле самой игры, это замечание касается всех игр
+
+---
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/games/game-calc.js#L6-L10
+
+Это супер!
+
+---
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/games/game-progression.js#L4-L19
+
+Можно еще улучшить код разделить, формирование прогрессии и скрытие элемента на две независимых функции
+
+---
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/games/game-progression.js#L9-L14
+
+При формировании прогрессии не стоит разделять на разные этапы, наполнение первого элемента от последующий в цикле, более явно будет делать это все в цикле
+
+---
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/index.js#L16
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/index.js#L20
+
+Логичнее было бы разделить на две переменные, описание игры и игровые данные,
+так как в первом вызове, мы хоть и не используем игровые данные, мы их формируем в холостую, тоже касается и описания для последующих шагов в цикле
+
+---
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/index.js#L29
+
+Данный ход у нас терминальный, с помощью return мы можем прерывать не только цикл, но и саму функцию
+
+---
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/index.js#L22
+
+Движок не должен заботится о форматах данных, это уже ответственность игры, иначе нам не получится написать игру с чуствительным к регистру вводом
+
+---
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/index.js#L33-L35
+
+Завершение цикла уже признак что все шаги пройдены, эта проверка лишняя
+
+https://github.com/isimyi/frontend-project-lvl1/blob/bbc79d788279da86d4ad03ca19a1abd22eb1c273/src/index.js#L25
+
+Также как и этот счетчик
+
+---
+
+Все вопросы, которые возникают, задавайте мне в слаке. Там мы их сможем оперативно решить.
